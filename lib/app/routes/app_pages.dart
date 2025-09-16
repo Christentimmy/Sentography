@@ -3,6 +3,7 @@
 import 'package:get/get.dart';
 import 'package:sentography/app/modules/auth/views/login_screen.dart';
 import 'package:sentography/app/modules/auth/views/signup_screen.dart';
+import 'package:sentography/app/modules/profile/views/bio_screen.dart';
 import 'package:sentography/app/modules/profile/views/hobby_screen.dart';
 import 'package:sentography/app/modules/profile/views/upload_profile_screen.dart';
 import 'package:sentography/app/modules/splash/splash_screen.dart';
@@ -34,6 +35,10 @@ class AppPages {
     GetPage(
       name: AppRoutes.hobby,
       page: () => HobbyScreen(),
+    ),
+    GetPage(
+      name: AppRoutes.bio,
+      page: () => BioScreen(),
     ),
   ];
 }

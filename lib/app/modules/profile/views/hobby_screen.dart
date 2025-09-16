@@ -3,6 +3,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:sentography/app/resources/colors.dart';
+import 'package:sentography/app/routes/app_routes.dart';
 import 'package:sentography/app/widgets/custom_button.dart';
 
 class HobbyScreen extends StatelessWidget {
@@ -130,7 +131,19 @@ class HobbyScreen extends StatelessWidget {
               }),
               SizedBox(height: Get.height * 0.03),
               CustomButton(
-                ontap: () {},
+                ontap: () {
+                  if (selectedHobby.value.isEmpty) {
+                    Get.snackbar(
+                      "Error",
+                      "Please select a hobby",
+                      snackPosition: SnackPosition.TOP,
+                      backgroundColor: Colors.red,
+                      colorText: Colors.white,
+                    );
+                  } else {
+                    Get.toNamed(AppRoutes.bio);
+                  }
+                },
                 isLoading: false.obs,
                 child: Text(
                   "Continue",
