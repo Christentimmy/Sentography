@@ -162,7 +162,9 @@ class SignupScreen extends StatelessWidget {
               ),
               SizedBox(height: Get.height * 0.03),
               CustomButton(
-                ontap: () {},
+                ontap: () {
+                  Get.toNamed(AppRoutes.uploadProfile);
+                },
                 isLoading: false.obs,
                 child: Text(
                   "Register",
