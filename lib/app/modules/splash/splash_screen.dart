@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:sentography/app/resources/colors.dart';
+import 'package:sentography/app/routes/app_routes.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -57,7 +57,7 @@ class _SplashScreenState extends State<SplashScreen>
       //   Get.offAllNamed(AppRoutes.login);
       //   return;
       // }
-      // Get.toNamed(AppRoutes.welcome);
+      Get.toNamed(AppRoutes.welcome);
     });
   }
 
@@ -70,27 +70,23 @@ class _SplashScreenState extends State<SplashScreen>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        width: MediaQuery.of(context).size.width,
-        decoration: BoxDecoration(color: AppColors.primaryColor),
-        child: Center(
-          child: AnimatedBuilder(
-            animation: _controller,
-            builder: (context, child) {
-              return Transform.translate(
-                offset: Offset(0, _bounceAnimation.value),
-                child: Opacity(
-                  opacity: fadeAnimation.value,
-                  child: Image.asset(
-                    'assets/images/sentLogo.png',
-                    width: 180,
-                    height: 180,
-                    fit: BoxFit.cover,
-                  ),
+      body: Center(
+        child: AnimatedBuilder(
+          animation: _controller,
+          builder: (context, child) {
+            return Transform.translate(
+              offset: Offset(0, _bounceAnimation.value),
+              child: Opacity(
+                opacity: fadeAnimation.value,
+                child: Image.asset(
+                  'assets/images/sentLogo.png',
+                  width: Get.width * 0.5,
+                  height: Get.height * 0.25,
+                  fit: BoxFit.cover,
                 ),
-              );
-            },
-          ),
+              ),
+            );
+          },
         ),
       ),
     );
