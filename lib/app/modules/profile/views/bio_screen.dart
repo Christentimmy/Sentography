@@ -105,52 +105,16 @@ class BioScreen extends StatelessWidget {
               ),
               SizedBox(height: Get.height * 0.02),
               Obx(() {
-                return SizedBox(
-                  height: 65,
-                  child: ListView.builder(
-                    scrollDirection: Axis.horizontal,
-                    itemCount: bioController.medias.length,
-                    itemBuilder: (context, index) {
-                      return InkWell(
-                        onTap: () {
-                          showDialog(
-                            context: context,
-                            builder: (context) {
-                              return Dialog(
-                                child: Image.file(
-                                  bioController.medias[index],
-                                ),
-                              );
-                            },
-                          );
-                        },
-                        child: Padding(
-                          padding: const EdgeInsets.only(right: 8.0),
-                          child: Stack(
-                            clipBehavior: Clip.none,
-                            children: [
-                              buildMedia(bioController.medias[index]),
-                              Positioned(
-                                top: -8,
-                                right: -8,
-                                child: InkWell(
-                                  onTap: () => bioController.removeMedia(index),
-                                  child: Icon(
-                                    Icons.cancel,
-                                    color: Colors.red,
-                                    size: 20,
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      );
-                    },
-                  ),
+                return AnimatedCrossFade(
+                  firstChild: SizedBox.shrink(),
+                  secondChild: buildAllSelectedMedia(),
+                  crossFadeState: bioController.medias.isEmpty
+                      ? CrossFadeState.showFirst
+                      : CrossFadeState.showSecond,
+                  duration: Duration(milliseconds: 300),
                 );
               }),
-              SizedBox(height: Get.height * 0.02),
+              SizedBox(height: Get.height * 0.03),
               CustomButton(
                 ontap: () => bioController.pickFile(),
                 border: Border.all(color: AppColors.primaryColor),
@@ -175,10 +139,22 @@ class BioScreen extends StatelessWidget {
                   ],
                 ),
               ),
-              SizedBox(height: Get.height * 0.05),
+              SizedBox(height: Get.height * 0.014),
+              Center(
+                child: Text(
+                  "Upload artwork, music samples, or short videos to  showcase your talent",
+                  textAlign: TextAlign.center,
+                  style: GoogleFonts.inter(
+                    fontSize: 14,
+                    fontWeight: FontWeight.w500,
+                    color: AppColors.primaryColor,
+                  ),
+                ),
+              ),
+              SizedBox(height: Get.height * 0.08),
               CustomButton(
                 isLoading: false.obs,
-                ontap: () => Get.toNamed(AppRoutes.hobby),
+                ontap: () => Get.toNamed(AppRoutes.preference),
                 child: Text(
                   "Next",
                   style: GoogleFonts.inter(
@@ -191,6 +167,44 @@ class BioScreen extends StatelessWidget {
             ],
           ),
         ),
+      ),
+    );
+  }
+
+  SizedBox buildAllSelectedMedia() {
+    return SizedBox(
+      height: 65,
+      child: ListView.builder(
+        scrollDirection: Axis.horizontal,
+        itemCount: bioController.medias.length,
+        itemBuilder: (context, index) {
+          return InkWell(
+            onTap: () {
+              showDialog(
+                context: context,
+                builder: (context) {
+                  return Dialog(child: Image.file(bioController.medias[index]));
+                },
+              );
+            },
+            child: Padding(
+              padding: const EdgeInsets.only(right: 8.0),
+              child: Stack(
+                children: [
+                  buildMedia(bioController.medias[index]),
+                  Positioned(
+                    top: -3,
+                    right: 0,
+                    child: InkWell(
+                      onTap: () => bioController.removeMedia(index),
+                      child: Icon(Icons.cancel, color: Colors.red, size: 20),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          );
+        },
       ),
     );
   }
