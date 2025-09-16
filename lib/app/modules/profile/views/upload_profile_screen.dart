@@ -171,7 +171,7 @@ class UploadProfileScreen extends StatelessWidget {
               SizedBox(height: Get.height * 0.1),
               CustomButton(
                 isLoading: false.obs,
-                ontap: () => Get.toNamed(AppRoutes.login),
+                ontap: () => Get.toNamed(AppRoutes.hobby),
                 child: Text(
                   "Next",
                   style: GoogleFonts.inter(

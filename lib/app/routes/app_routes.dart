@@ -5,4 +5,5 @@ class AppRoutes {
   static const String login = '/login';
   static const String signup = '/signup';
   static const String uploadProfile = '/uploadProfile';
+  static const String hobby = '/hobby';
 }
