@@ -7,8 +7,8 @@ import 'package:sentography/app/routes/app_routes.dart';
 import 'package:sentography/app/widgets/custom_button.dart';
 import 'package:sentography/app/widgets/custom_textfield.dart';
 
-class LoginScreen extends StatelessWidget {
-  LoginScreen({super.key});
+class SignupScreen extends StatelessWidget {
+  SignupScreen({super.key});
 
   final formKey = GlobalKey<FormState>();
   final RxBool isPasswordVisible = true.obs;
@@ -21,7 +21,7 @@ class LoginScreen extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 20),
           child: ListView(
             children: [
-              SizedBox(height: Get.height * 0.03),
+              SizedBox(height: Get.height * 0.02),
               Center(
                 child: Image.asset(
                   'assets/images/sentLogo.png',
@@ -33,7 +33,7 @@ class LoginScreen extends StatelessWidget {
               SizedBox(height: Get.height * 0.01),
               Center(
                 child: Text(
-                  "Welcome back to your journey",
+                  "Register to your account",
                   style: GoogleFonts.inter(
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
@@ -41,9 +41,21 @@ class LoginScreen extends StatelessWidget {
                   ),
                 ),
               ),
-              SizedBox(height: Get.height * 0.1),
+              Center(
+                child: Text(
+                  "Fill the following essential details to\ngetting registered.",
+                  textAlign: TextAlign.center,
+                  style: GoogleFonts.inter(
+                    fontSize: 13,
+                    fontWeight: FontWeight.normal,
+                    color: Colors.black,
+                  ),
+                ),
+              ),
+
+              SizedBox(height: Get.height * 0.05),
               Text(
-                "Email/ Mobile Number",
+                "Email",
                 style: GoogleFonts.poppins(
                   fontSize: 16,
                   fontWeight: FontWeight.w600,
@@ -52,8 +64,22 @@ class LoginScreen extends StatelessWidget {
               ),
               SizedBox(height: 5),
               CustomTextField(
-                hintText: "Enter your email or mobile number",
+                hintText: "Enter your email",
                 prefixIcon: Icons.email,
+              ),
+              SizedBox(height: 20),
+              Text(
+                "Phone Number",
+                style: GoogleFonts.poppins(
+                  fontSize: 16,
+                  fontWeight: FontWeight.w600,
+                  color: Colors.black,
+                ),
+              ),
+              SizedBox(height: 5),
+              CustomTextField(
+                hintText: "Enter your number",
+                prefixIcon: Icons.phone,
               ),
               SizedBox(height: 20),
               Text(
@@ -77,25 +103,64 @@ class LoginScreen extends StatelessWidget {
                   },
                 );
               }),
+              SizedBox(height: Get.height * 0.02),
               Row(
-                mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                  Text(
-                    "Forgot Password?",
-                    style: GoogleFonts.poppins(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w600,
-                      color: AppColors.primaryColor,
+                  Checkbox(
+                    value: false,
+                    materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                    checkColor: AppColors.primaryColor,
+                    visualDensity: VisualDensity.compact,
+                    onChanged: (value) {},
+                  ),
+                  Expanded(
+                    child: RichText(
+                      text: TextSpan(
+                        children: [
+                          TextSpan(
+                            text: "I agree to ",
+                            style: GoogleFonts.inter(
+                              fontSize: 13,
+                              fontWeight: FontWeight.normal,
+                              color: Colors.black,
+                            ),
+                          ),
+                          TextSpan(
+                            text: "Sentography ",
+                            style: GoogleFonts.inter(
+                              fontSize: 13,
+                              fontWeight: FontWeight.bold,
+                              color: AppColors.primaryColor,
+                            ),
+                          ),
+                          TextSpan(
+                            text: "terms and conditions ",
+                            style: GoogleFonts.inter(
+                              fontSize: 13,
+                              fontWeight: FontWeight.normal,
+                              color: Colors.black,
+                            ),
+                          ),
+                          TextSpan(
+                            text: "Learn more",
+                            style: GoogleFonts.inter(
+                              fontSize: 13,
+                              fontWeight: FontWeight.bold,
+                              color: AppColors.primaryColor,
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ],
               ),
-              SizedBox(height: Get.height * 0.1),
+              SizedBox(height: Get.height * 0.03),
               CustomButton(
                 ontap: () {},
                 isLoading: false.obs,
                 child: Text(
-                  "Login",
+                  "Register",
                   style: GoogleFonts.inter(
                     fontSize: 16,
                     fontWeight: FontWeight.bold,
@@ -134,16 +199,18 @@ class LoginScreen extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    "Don’t have an account?  ",
+                    "Already have an account? ",
                     style: GoogleFonts.inter(
                       fontWeight: FontWeight.normal,
                       color: Colors.black,
                     ),
                   ),
                   InkWell(
-                    onTap: () => Get.toNamed(AppRoutes.signup),
+                    onTap: () {
+                      Get.toNamed(AppRoutes.login);
+                    },
                     child: Text(
-                      "Register",
+                      "Login",
                       style: GoogleFonts.inter(
                         fontWeight: FontWeight.bold,
                         color: AppColors.primaryColor,
