@@ -12,6 +12,7 @@ class SignupScreen extends StatelessWidget {
 
   final formKey = GlobalKey<FormState>();
   final RxBool isPasswordVisible = true.obs;
+  final RxBool isValue = false.obs;
 
   @override
   Widget build(BuildContext context) {
@@ -106,13 +107,17 @@ class SignupScreen extends StatelessWidget {
               SizedBox(height: Get.height * 0.02),
               Row(
                 children: [
-                  Checkbox(
-                    value: false,
-                    materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                    checkColor: AppColors.primaryColor,
-                    visualDensity: VisualDensity.compact,
-                    onChanged: (value) {},
-                  ),
+                  Obx(() {
+                    return Checkbox(
+                      value: isValue.value,
+                      materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                      activeColor: AppColors.primaryColor,
+                      visualDensity: VisualDensity.compact,
+                      onChanged: (value) {
+                        isValue.value = value!;
+                      },
+                    );
+                  }),
                   Expanded(
                     child: RichText(
                       text: TextSpan(
