@@ -13,4 +13,5 @@ class AppRoutes {
   static const String matches = '/matches';
   static const String chatList = '/chatList';
   static const String message = '/message';
+  static const String profile = '/profile';
 }

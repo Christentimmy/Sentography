@@ -9,6 +9,7 @@ import 'package:sentography/app/modules/home/views/home_screen.dart';
 import 'package:sentography/app/modules/profile/views/bio_screen.dart';
 import 'package:sentography/app/modules/profile/views/hobby_screen.dart';
 import 'package:sentography/app/modules/profile/views/preference_screen.dart';
+import 'package:sentography/app/modules/profile/views/profile_screen.dart';
 import 'package:sentography/app/modules/profile/views/upload_profile_screen.dart';
 import 'package:sentography/app/modules/splash/splash_screen.dart';
 import 'package:sentography/app/modules/welcome/welcome_screen.dart';
@@ -29,5 +30,6 @@ class AppPages {
     GetPage(name: AppRoutes.matches, page: () => MatchesScreen()),
     GetPage(name: AppRoutes.chatList, page: () => ChatListScreen()),
     GetPage(name: AppRoutes.message, page: () => MessageScreen()),
+    GetPage(name: AppRoutes.profile, page: () => ProfileScreen()),
   ];
 }
