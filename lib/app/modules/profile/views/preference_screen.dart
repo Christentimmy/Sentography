@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:sentography/app/resources/colors.dart';
+import 'package:sentography/app/routes/app_routes.dart';
 import 'package:sentography/app/widgets/custom_button.dart';
 
 class PreferenceScreen extends StatelessWidget {
@@ -298,7 +299,9 @@ class PreferenceScreen extends StatelessWidget {
               ),
               SizedBox(height: Get.height * 0.02),
               CustomButton(
-                ontap: () {},
+                ontap: () {
+                  Get.toNamed(AppRoutes.bottomNavigation);
+                },
                 isLoading: false.obs,
                 child: Text(
                   "Start Discovering",

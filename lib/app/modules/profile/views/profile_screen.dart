@@ -568,7 +568,9 @@ class _ProfileScreenState extends State<ProfileScreen>
                         ),
                         SizedBox(height: Get.height * 0.03),
                         CustomButton(
-                          ontap: () {},
+                          ontap: () {
+                            Get.toNamed(AppRoutes.login);
+                          },
                           isLoading: false.obs,
                           bgColor: AppColors.bgColor,
                           border: Border.all(color: Colors.red),
