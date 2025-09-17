@@ -1,8 +1,7 @@
-
-
 import 'package:get/get.dart';
 import 'package:sentography/app/modules/auth/views/login_screen.dart';
 import 'package:sentography/app/modules/auth/views/signup_screen.dart';
+import 'package:sentography/app/modules/favourite/views/favourite_screen.dart';
 import 'package:sentography/app/modules/home/views/home_screen.dart';
 import 'package:sentography/app/modules/profile/views/bio_screen.dart';
 import 'package:sentography/app/modules/profile/views/hobby_screen.dart';
@@ -14,43 +13,15 @@ import 'package:sentography/app/routes/app_routes.dart';
 
 class AppPages {
   static final routes = [
-    GetPage(
-      name: AppRoutes.splash,
-      page: () => const SplashScreen(),
-    ),
-    GetPage(
-      name: AppRoutes.welcome,
-      page: () => const WelcomeScreen(),
-    ),
-    GetPage(
-      name: AppRoutes.login,
-      page: () => LoginScreen(),
-    ),
-    GetPage(
-      name: AppRoutes.signup,
-      page: () => SignupScreen(),
-    ),
-    GetPage(
-      name: AppRoutes.uploadProfile,
-      page: () => UploadProfileScreen(),
-    ),
-    GetPage(
-      name: AppRoutes.hobby,
-      page: () => HobbyScreen(),
-    ),
-    GetPage(
-      name: AppRoutes.bio,
-      page: () => BioScreen(),
-    ),
-    GetPage(
-      name: AppRoutes.preference,
-      page: () => PreferenceScreen(),
-    ),
-    
-    GetPage(
-      name: AppRoutes.home,
-      page: () => HomeScreen(),
-    ),
-
+    GetPage(name: AppRoutes.splash, page: () => const SplashScreen()),
+    GetPage(name: AppRoutes.welcome, page: () => const WelcomeScreen()),
+    GetPage(name: AppRoutes.login, page: () => LoginScreen()),
+    GetPage(name: AppRoutes.signup, page: () => SignupScreen()),
+    GetPage(name: AppRoutes.uploadProfile, page: () => UploadProfileScreen()),
+    GetPage(name: AppRoutes.hobby, page: () => HobbyScreen()),
+    GetPage(name: AppRoutes.bio, page: () => BioScreen()),
+    GetPage(name: AppRoutes.preference, page: () => PreferenceScreen()),
+    GetPage(name: AppRoutes.home, page: () => HomeScreen()),
+    GetPage(name: AppRoutes.favourite, page: () => FavoriteScreen()),
   ];
 }

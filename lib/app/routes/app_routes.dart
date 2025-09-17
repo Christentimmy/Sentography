@@ -9,4 +9,5 @@ class AppRoutes {
   static const String bio = '/bio';
   static const String preference = '/preference';
   static const String home = '/home';
+  static const String favourite = '/favourite';
 }
