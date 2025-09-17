@@ -3,6 +3,7 @@
 import 'package:get/get.dart';
 import 'package:sentography/app/modules/auth/views/login_screen.dart';
 import 'package:sentography/app/modules/auth/views/signup_screen.dart';
+import 'package:sentography/app/modules/home/views/home_screen.dart';
 import 'package:sentography/app/modules/profile/views/bio_screen.dart';
 import 'package:sentography/app/modules/profile/views/hobby_screen.dart';
 import 'package:sentography/app/modules/profile/views/preference_screen.dart';
@@ -45,5 +46,11 @@ class AppPages {
       name: AppRoutes.preference,
       page: () => PreferenceScreen(),
     ),
+    
+    GetPage(
+      name: AppRoutes.home,
+      page: () => HomeScreen(),
+    ),
+
   ];
 }
