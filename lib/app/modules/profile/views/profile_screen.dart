@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:sentography/app/resources/colors.dart';
+import 'package:sentography/app/routes/app_routes.dart';
+import 'package:sentography/app/widgets/custom_button.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -19,6 +21,16 @@ class _ProfileScreenState extends State<ProfileScreen>
     super.initState();
     tabController = TabController(length: 2, vsync: this);
   }
+
+  final RxBool showSent = false.obs;
+  final RxBool showDistance = false.obs;
+  final RxBool showLastSeen = false.obs;
+  final RxBool showIncognito = false.obs;
+
+  final RxBool newMatches = false.obs;
+  final RxBool messages = false.obs;
+  final RxBool likes = false.obs;
+  final RxBool superLikes = false.obs;
 
   @override
   Widget build(BuildContext context) {
@@ -55,103 +67,11 @@ class _ProfileScreenState extends State<ProfileScreen>
                 child: TabBarView(
                   controller: tabController,
                   children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
+                    buildProfileSection(),
+                    ListView(
+                      physics: BouncingScrollPhysics(),
                       children: [
                         SizedBox(height: 10),
-                        Container(
-                          width: Get.width,
-                          decoration: BoxDecoration(
-                            border: Border.all(color: AppColors.primaryColor),
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(12),
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.black.withValues(alpha: 0.1),
-                                blurRadius: 5,
-                                offset: Offset(0, 2),
-                              ),
-                            ],
-                          ),
-                          child: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              SizedBox(height: 10),
-                              CircleAvatar(
-                                radius: 45,
-                                backgroundColor: AppColors.primaryColor,
-                                child: Text(
-                                  "T",
-                                  style: GoogleFonts.inter(color: Colors.white),
-                                ),
-                              ),
-                              SizedBox(height: 3),
-                              Text(
-                                "Jordan, 25",
-                                style: GoogleFonts.inter(
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.bold,
-                                  color: AppColors.primaryColor,
-                                ),
-                              ),
-                              Text(
-                                "San Francisco, CA",
-                                style: GoogleFonts.inter(
-                                  fontSize: 12,
-                                  fontWeight: FontWeight.normal,
-                                  color: AppColors.primaryColor,
-                                ),
-                              ),
-                              SizedBox(height: 15),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Chip(
-                                    backgroundColor: AppColors.primaryColor,
-                                    label: Row(
-                                      children: [
-                                        Icon(
-                                          Icons.library_music_rounded,
-                                          color: Colors.white,
-                                        ),
-                                        SizedBox(width: 2),
-                                        Text(
-                                          "Singer",
-                                          style: GoogleFonts.inter(
-                                            color: Colors.white,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                  SizedBox(width: 5),
-                                  Chip(
-                                    backgroundColor: AppColors.bgColor,
-                                    label: Row(
-                                      children: [
-                                        Icon(
-                                          Icons.verified,
-                                          color: Colors.blue,
-                                        ),
-                                        SizedBox(width: 2),
-                                        Text(
-                                          "Verified",
-                                          style: GoogleFonts.inter(
-                                            color: AppColors.primaryColor,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              SizedBox(height: 15),
-                            ],
-                          ),
-                        ),
-                        SizedBox(height: 15),
-                        buildProfileStat(),
-                        SizedBox(height: 15),
                         Container(
                           padding: const EdgeInsets.symmetric(
                             vertical: 15,
@@ -176,37 +96,510 @@ class _ProfileScreenState extends State<ProfileScreen>
                               Row(
                                 children: [
                                   Text(
-                                    "About",
+                                    "Account",
                                     style: GoogleFonts.inter(
                                       fontSize: 20,
                                       fontWeight: FontWeight.bold,
                                       color: AppColors.primaryColor,
                                     ),
                                   ),
-                                  const Spacer(),
-                                  Icon(
-                                    Icons.edit,
-                                    color: AppColors.primaryColor,
-                                  ),
                                 ],
                               ),
                               SizedBox(height: 15),
-                              Text(
-                                "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-                                style: GoogleFonts.inter(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.normal,
-                                  color: AppColors.primaryColor,
+                              ListTile(
+                                contentPadding: EdgeInsets.zero,
+                                leading: Text(
+                                  "Phone Number",
+                                  style: GoogleFonts.inter(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w500,
+                                    color: AppColors.primaryColor,
+                                  ),
+                                ),
+                                trailing: Text(
+                                  "+66 812345678",
+                                  style: GoogleFonts.inter(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold,
+                                    color: AppColors.primaryColor,
+                                  ),
+                                ),
+                              ),
+                              ListTile(
+                                contentPadding: EdgeInsets.zero,
+                                leading: Text(
+                                  "Email",
+                                  style: GoogleFonts.inter(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w500,
+                                    color: AppColors.primaryColor,
+                                  ),
+                                ),
+                                trailing: Text(
+                                  "akaza@gmail.com",
+                                  style: GoogleFonts.inter(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold,
+                                    color: AppColors.primaryColor,
+                                  ),
                                 ),
                               ),
                             ],
                           ),
                         ),
+                        SizedBox(height: 10),
+                        Container(
+                          padding: const EdgeInsets.symmetric(
+                            vertical: 15,
+                            horizontal: 20,
+                          ),
+                          width: Get.width,
+                          decoration: BoxDecoration(
+                            border: Border.all(color: AppColors.primaryColor),
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(12),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.black.withValues(alpha: 0.1),
+                                blurRadius: 5,
+                                offset: Offset(0, 2),
+                              ),
+                            ],
+                          ),
+                          child: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Row(
+                                children: [
+                                  Text(
+                                    "Discovery",
+                                    style: GoogleFonts.inter(
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold,
+                                      color: AppColors.primaryColor,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              SizedBox(height: 15),
+
+                              ListTile(
+                                contentPadding: EdgeInsets.zero,
+                                leading: Text(
+                                  "Show me on Sentography",
+                                  style: GoogleFonts.inter(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w500,
+                                    color: AppColors.primaryColor,
+                                  ),
+                                ),
+                                trailing: Obx(() {
+                                  return Transform.scale(
+                                    scale: 0.7,
+                                    child: Switch(
+                                      activeColor: AppColors.primaryColor,
+                                      value: showSent.value,
+                                      onChanged: (value) {
+                                        showSent.value = value;
+                                      },
+                                    ),
+                                  );
+                                }),
+                              ),
+                              SizedBox(height: 15),
+                              ListTile(
+                                contentPadding: EdgeInsets.zero,
+                                leading: Text(
+                                  "Distance",
+                                  style: GoogleFonts.inter(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w500,
+                                    color: AppColors.primaryColor,
+                                  ),
+                                ),
+                                trailing: Text(
+                                  "25 miles",
+                                  style: GoogleFonts.inter(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold,
+                                    color: AppColors.primaryColor,
+                                  ),
+                                ),
+                              ),
+                              ListTile(
+                                contentPadding: EdgeInsets.zero,
+                                leading: Text(
+                                  "Age-Range",
+                                  style: GoogleFonts.inter(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w500,
+                                    color: AppColors.primaryColor,
+                                  ),
+                                ),
+                                trailing: Text(
+                                  "22-25",
+                                  style: GoogleFonts.inter(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold,
+                                    color: AppColors.primaryColor,
+                                  ),
+                                ),
+                              ),
+                              ListTile(
+                                contentPadding: EdgeInsets.zero,
+                                leading: Text(
+                                  "Looking For",
+                                  style: GoogleFonts.inter(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w500,
+                                    color: AppColors.primaryColor,
+                                  ),
+                                ),
+                                trailing: Text(
+                                  "Everyone",
+                                  style: GoogleFonts.inter(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold,
+                                    color: AppColors.primaryColor,
+                                  ),
+                                ),
+                              ),
+                              SizedBox(height: 15),
+                              CustomButton(
+                                ontap: () {},
+                                isLoading: false.obs,
+                                bgColor: AppColors.bgColor,
+                                border: Border.all(
+                                  color: AppColors.primaryColor,
+                                ),
+                                child: Text(
+                                  "Edit Preferences",
+                                  style: GoogleFonts.inter(
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.bold,
+                                    color: AppColors.primaryColor,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        SizedBox(height: 10),
+                        Container(
+                          padding: const EdgeInsets.symmetric(
+                            vertical: 15,
+                            horizontal: 20,
+                          ),
+                          width: Get.width,
+                          decoration: BoxDecoration(
+                            border: Border.all(color: AppColors.primaryColor),
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(12),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.black.withValues(alpha: 0.1),
+                                blurRadius: 5,
+                                offset: Offset(0, 2),
+                              ),
+                            ],
+                          ),
+                          child: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Row(
+                                children: [
+                                  Text(
+                                    "Privacy",
+                                    style: GoogleFonts.inter(
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold,
+                                      color: AppColors.primaryColor,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              SizedBox(height: 15),
+                              ListTile(
+                                contentPadding: EdgeInsets.zero,
+                                title: Text(
+                                  "Show distance",
+                                  style: GoogleFonts.inter(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w500,
+                                    color: AppColors.primaryColor,
+                                  ),
+                                ),
+                                subtitle: Text(
+                                  "Let others see how far away you are",
+                                  style: GoogleFonts.inter(
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.normal,
+                                    color: AppColors.primaryColor,
+                                  ),
+                                ),
+                                trailing: Obx(() {
+                                  return Transform.scale(
+                                    scale: 0.7,
+                                    child: Switch(
+                                      activeColor: AppColors.primaryColor,
+                                      value: showDistance.value,
+                                      onChanged: (value) {
+                                        showDistance.value = value;
+                                      },
+                                    ),
+                                  );
+                                }),
+                              ),
+                              ListTile(
+                                contentPadding: EdgeInsets.zero,
+                                title: Text(
+                                  "Show last seen",
+                                  style: GoogleFonts.inter(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w500,
+                                    color: AppColors.primaryColor,
+                                  ),
+                                ),
+                                subtitle: Text(
+                                  "Let others see when you were last active",
+                                  style: GoogleFonts.inter(
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.normal,
+                                    color: AppColors.primaryColor,
+                                  ),
+                                ),
+                                trailing: Obx(() {
+                                  return Transform.scale(
+                                    scale: 0.7,
+                                    child: Switch(
+                                      activeColor: AppColors.primaryColor,
+                                      value: showLastSeen.value,
+                                      onChanged: (value) {
+                                        showLastSeen.value = value;
+                                      },
+                                    ),
+                                  );
+                                }),
+                              ),
+                              ListTile(
+                                contentPadding: EdgeInsets.zero,
+                                title: Text(
+                                  "Incognito mode",
+                                  style: GoogleFonts.inter(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w500,
+                                    color: AppColors.primaryColor,
+                                  ),
+                                ),
+                                subtitle: Text(
+                                  "Only people you like can see your profile",
+                                  style: GoogleFonts.inter(
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.normal,
+                                    color: AppColors.primaryColor,
+                                  ),
+                                ),
+                                trailing: Obx(() {
+                                  return Transform.scale(
+                                    scale: 0.7,
+                                    child: Switch(
+                                      activeColor: AppColors.primaryColor,
+                                      value: showIncognito.value,
+                                      onChanged: (value) {
+                                        showIncognito.value = value;
+                                      },
+                                    ),
+                                  );
+                                }),
+                              ),
+                              SizedBox(height: 15),
+                              CustomButton(
+                                ontap: () {},
+                                isLoading: false.obs,
+                                bgColor: AppColors.bgColor,
+                                border: Border.all(
+                                  color: AppColors.primaryColor,
+                                ),
+                                child: Text(
+                                  "Edit Preferences",
+                                  style: GoogleFonts.inter(
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.bold,
+                                    color: AppColors.primaryColor,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        SizedBox(height: 10),
+                        Container(
+                          padding: const EdgeInsets.symmetric(
+                            vertical: 15,
+                            horizontal: 20,
+                          ),
+                          width: Get.width,
+                          decoration: BoxDecoration(
+                            border: Border.all(color: AppColors.primaryColor),
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(12),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.black.withValues(alpha: 0.1),
+                                blurRadius: 5,
+                                offset: Offset(0, 2),
+                              ),
+                            ],
+                          ),
+                          child: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Row(
+                                children: [
+                                  Text(
+                                    "Notifications",
+                                    style: GoogleFonts.inter(
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold,
+                                      color: AppColors.primaryColor,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              SizedBox(height: 15),
+                              ListTile(
+                                contentPadding: EdgeInsets.zero,
+                                title: Text(
+                                  "New matches",
+                                  style: GoogleFonts.inter(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w500,
+                                    color: AppColors.primaryColor,
+                                  ),
+                                ),
+                                trailing: Obx(() {
+                                  return Transform.scale(
+                                    scale: 0.7,
+                                    child: Switch(
+                                      activeColor: AppColors.primaryColor,
+                                      value: newMatches.value,
+                                      onChanged: (value) {
+                                        newMatches.value = value;
+                                      },
+                                    ),
+                                  );
+                                }),
+                              ),
+                              ListTile(
+                                contentPadding: EdgeInsets.zero,
+                                title: Text(
+                                  "Messages",
+                                  style: GoogleFonts.inter(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w500,
+                                    color: AppColors.primaryColor,
+                                  ),
+                                ),
+
+                                trailing: Obx(() {
+                                  return Transform.scale(
+                                    scale: 0.7,
+                                    child: Switch(
+                                      activeColor: AppColors.primaryColor,
+                                      value: messages.value,
+                                      onChanged: (value) {
+                                        messages.value = value;
+                                      },
+                                    ),
+                                  );
+                                }),
+                              ),
+                              ListTile(
+                                contentPadding: EdgeInsets.zero,
+                                title: Text(
+                                  "Likes",
+                                  style: GoogleFonts.inter(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w500,
+                                    color: AppColors.primaryColor,
+                                  ),
+                                ),
+
+                                trailing: Obx(() {
+                                  return Transform.scale(
+                                    scale: 0.7,
+                                    child: Switch(
+                                      activeColor: AppColors.primaryColor,
+                                      value: likes.value,
+                                      onChanged: (value) {
+                                        likes.value = value;
+                                      },
+                                    ),
+                                  );
+                                }),
+                              ),
+                              ListTile(
+                                contentPadding: EdgeInsets.zero,
+                                title: Text(
+                                  "Super Likes",
+                                  style: GoogleFonts.inter(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w500,
+                                    color: AppColors.primaryColor,
+                                  ),
+                                ),
+
+                                trailing: Obx(() {
+                                  return Transform.scale(
+                                    scale: 0.7,
+                                    child: Switch(
+                                      activeColor: AppColors.primaryColor,
+                                      value: superLikes.value,
+                                      onChanged: (value) {
+                                        superLikes.value = value;
+                                      },
+                                    ),
+                                  );
+                                }),
+                              ),
+                              SizedBox(height: 15),
+                            ],
+                          ),
+                        ),
+                        SizedBox(height: Get.height * 0.03),
+                        CustomButton(
+                          ontap: () {},
+                          isLoading: false.obs,
+                          bgColor: AppColors.bgColor,
+                          border: Border.all(color: Colors.red),
+                          child: Text(
+                            "Logout",
+                            style: GoogleFonts.inter(
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.red,
+                            ),
+                          ),
+                        ),
+                        SizedBox(height: Get.height * 0.01),
+                        CustomButton(
+                          ontap: () {
+                            Get.toNamed(AppRoutes.login);
+                          },
+                          isLoading: false.obs,
+                          bgColor: AppColors.bgColor,
+                          border: Border.all(color: Colors.red),
+                          child: Text(
+                            "Delete Account",
+                            style: GoogleFonts.inter(
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.red,
+                            ),
+                          ),
+                        ),
                       ],
                     ),
-                    Container(color: Colors.green),
-                    // BasicInfo(),
-                    // About(),
                   ],
                 ),
               ),
@@ -214,6 +607,141 @@ class _ProfileScreenState extends State<ProfileScreen>
           ),
         ),
       ),
+    );
+  }
+
+  Column buildProfileSection() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        SizedBox(height: 10),
+        Container(
+          width: Get.width,
+          decoration: BoxDecoration(
+            border: Border.all(color: AppColors.primaryColor),
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(12),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black.withValues(alpha: 0.1),
+                blurRadius: 5,
+                offset: Offset(0, 2),
+              ),
+            ],
+          ),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              SizedBox(height: 10),
+              CircleAvatar(
+                radius: 45,
+                backgroundColor: AppColors.primaryColor,
+                child: Text("T", style: GoogleFonts.inter(color: Colors.white)),
+              ),
+              SizedBox(height: 3),
+              Text(
+                "Jordan, 25",
+                style: GoogleFonts.inter(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                  color: AppColors.primaryColor,
+                ),
+              ),
+              Text(
+                "San Francisco, CA",
+                style: GoogleFonts.inter(
+                  fontSize: 12,
+                  fontWeight: FontWeight.normal,
+                  color: AppColors.primaryColor,
+                ),
+              ),
+              SizedBox(height: 15),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Chip(
+                    backgroundColor: AppColors.primaryColor,
+                    label: Row(
+                      children: [
+                        Icon(Icons.library_music_rounded, color: Colors.white),
+                        SizedBox(width: 2),
+                        Text(
+                          "Singer",
+                          style: GoogleFonts.inter(color: Colors.white),
+                        ),
+                      ],
+                    ),
+                  ),
+                  SizedBox(width: 5),
+                  Chip(
+                    backgroundColor: AppColors.bgColor,
+                    label: Row(
+                      children: [
+                        Icon(Icons.verified, color: Colors.blue),
+                        SizedBox(width: 2),
+                        Text(
+                          "Verified",
+                          style: GoogleFonts.inter(
+                            color: AppColors.primaryColor,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+              SizedBox(height: 15),
+            ],
+          ),
+        ),
+        SizedBox(height: 15),
+        buildProfileStat(),
+        SizedBox(height: 15),
+        Container(
+          padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 20),
+          width: Get.width,
+          decoration: BoxDecoration(
+            border: Border.all(color: AppColors.primaryColor),
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(12),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black.withValues(alpha: 0.1),
+                blurRadius: 5,
+                offset: Offset(0, 2),
+              ),
+            ],
+          ),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Row(
+                children: [
+                  Text(
+                    "About",
+                    style: GoogleFonts.inter(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                      color: AppColors.primaryColor,
+                    ),
+                  ),
+                  const Spacer(),
+                  Icon(Icons.edit, color: AppColors.primaryColor),
+                ],
+              ),
+              SizedBox(height: 15),
+              Text(
+                "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+                style: GoogleFonts.inter(
+                  fontSize: 16,
+                  fontWeight: FontWeight.normal,
+                  color: AppColors.primaryColor,
+                ),
+              ),
+            ],
+          ),
+        ),
+      ],
     );
   }
 
