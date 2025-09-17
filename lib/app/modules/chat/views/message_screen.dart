@@ -54,6 +54,32 @@ class MessageScreen extends StatelessWidget {
           child: CustomTextField(
             hintText: "Type something...",
             suffixIcon: Icons.add,
+            suffixIconcolor: AppColors.primaryColor,
+            onSuffixTap: () {
+              showModalBottomSheet(
+                context: Get.context!,
+                builder: (context) {
+                  return Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      ListTile(
+                        leading: Icon(Icons.image),
+                        title: Text("Add Image"),
+                      ),
+                      ListTile(
+                        leading: Icon(Icons.library_music_sharp),
+                        title: Text("Add Audio"),
+                      ),
+                      ListTile(
+                        leading: Icon(Icons.video_call),
+                        title: Text("Add Video"),
+                      ),
+                    ],
+                  );
+                },
+              );
+            },
+
             // prefixIcon: Icons.card_giftcard_rounded,
             // prefixIconColor: Colors.grey,
             // onPrefixTap: () {},
