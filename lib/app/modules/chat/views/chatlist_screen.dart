@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:sentography/app/resources/colors.dart';
+import 'package:sentography/app/routes/app_routes.dart';
 
 class ChatListScreen extends StatelessWidget {
   const ChatListScreen({super.key});
@@ -59,7 +60,7 @@ class ChatListScreen extends StatelessWidget {
       contentPadding: EdgeInsets.zero,
       horizontalTitleGap: 5,
       onTap: () {
-        // Get.toNamed(AppRoutes.message);
+        Get.toNamed(AppRoutes.message);
       },
       leading: CircleAvatar(
         radius: 35,

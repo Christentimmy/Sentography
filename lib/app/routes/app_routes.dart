@@ -12,4 +12,5 @@ class AppRoutes {
   static const String favourite = '/favourite';
   static const String matches = '/matches';
   static const String chatList = '/chatList';
+  static const String message = '/message';
 }
