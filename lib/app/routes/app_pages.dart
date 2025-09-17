@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 import 'package:sentography/app/modules/auth/views/login_screen.dart';
 import 'package:sentography/app/modules/auth/views/signup_screen.dart';
+import 'package:sentography/app/modules/chat/views/chatlist_screen.dart';
 import 'package:sentography/app/modules/favourite/views/favourite_screen.dart';
 import 'package:sentography/app/modules/favourite/views/matches_screen.dart';
 import 'package:sentography/app/modules/home/views/home_screen.dart';
@@ -25,5 +26,6 @@ class AppPages {
     GetPage(name: AppRoutes.home, page: () => HomeScreen()),
     GetPage(name: AppRoutes.favourite, page: () => FavoriteScreen()),
     GetPage(name: AppRoutes.matches, page: () => MatchesScreen()),
+    GetPage(name: AppRoutes.chatList, page: () => ChatListScreen()),
   ];
 }
