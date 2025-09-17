@@ -14,6 +14,7 @@ import 'package:sentography/app/modules/profile/views/upload_profile_screen.dart
 import 'package:sentography/app/modules/splash/splash_screen.dart';
 import 'package:sentography/app/modules/welcome/welcome_screen.dart';
 import 'package:sentography/app/routes/app_routes.dart';
+import 'package:sentography/app/widgets/bottom_navigation_widget.dart';
 
 class AppPages {
   static final routes = [
@@ -31,5 +32,6 @@ class AppPages {
     GetPage(name: AppRoutes.chatList, page: () => ChatListScreen()),
     GetPage(name: AppRoutes.message, page: () => MessageScreen()),
     GetPage(name: AppRoutes.profile, page: () => ProfileScreen()),
+    GetPage(name: AppRoutes.bottomNavigation, page: () => BottomNavigationWidget()),
   ];
 }
