@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:sentography/app/resources/colors.dart';
@@ -612,9 +613,8 @@ class _ProfileScreenState extends State<ProfileScreen>
     );
   }
 
-  Column buildProfileSection() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
+  Widget buildProfileSection() {
+    return ListView(
       children: [
         SizedBox(height: 10),
         Container(
@@ -743,7 +743,149 @@ class _ProfileScreenState extends State<ProfileScreen>
             ],
           ),
         ),
+        SizedBox(height: 15),
+        Container(
+          padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 20),
+          width: Get.width,
+          decoration: BoxDecoration(
+            border: Border.all(color: AppColors.primaryColor),
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(12),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black.withValues(alpha: 0.1),
+                blurRadius: 5,
+                offset: Offset(0, 2),
+              ),
+            ],
+          ),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Row(
+                children: [
+                  Text(
+                    "Showcase",
+                    style: GoogleFonts.inter(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                      color: AppColors.primaryColor,
+                    ),
+                  ),
+                  const Spacer(),
+                  Icon(Icons.upload, color: AppColors.primaryColor),
+                ],
+              ),
+              SizedBox(height: 15),
+              Row(
+                children: [
+                  Expanded(
+                    child: Container(
+                      alignment: Alignment.center,
+                      height: Get.height * 0.12,
+                      decoration: BoxDecoration(
+                        color: Color(0xFFF4E7FD),
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      child: Image.asset(
+                        'assets/images/musicNote.png',
+                        width: 50,
+                      ),
+                    ),
+                  ),
+                  SizedBox(width: 15),
+                  Expanded(
+                    child: Container(
+                      alignment: Alignment.center,
+                      height: Get.height * 0.12,
+                      decoration: BoxDecoration(
+                        color: Color(0xFFE0EAFF),
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      child: Image.asset(
+                        'assets/images/musicNote2.png',
+                        width: 50,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ),
+        SizedBox(height: 10),
+        buildPremiumCard(),
       ],
+    );
+  }
+
+  Widget buildPremiumCard() {
+    return Container(
+      padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 20),
+      decoration: BoxDecoration(
+        color: const Color(0xFFFFF8E7),
+        borderRadius: BorderRadius.circular(30),
+        border: Border.all(color: const Color(0xFFFDB750), width: 1),
+      ),
+      child: Column(
+        children: [
+          // Crown icon
+          FaIcon(
+            FontAwesomeIcons.crown,
+            size: 50,
+            color: const Color(0xFFFDB750),
+          ),
+          const SizedBox(height: 10),
+
+          // Main title
+          Text(
+            'Upgrade to premium',
+            style: GoogleFonts.inter(
+              fontSize: 25,
+              fontWeight: FontWeight.bold,
+              color: Color(0xFF894B00),
+              letterSpacing: -0.5,
+            ),
+            textAlign: TextAlign.center,
+          ),
+          const SizedBox(height: 10),
+          Text(
+            'Get unlimited swipes, see who likes you, and boost your profile',
+            style: GoogleFonts.inter(
+              fontSize: 18,
+              color: Color(0xFFA65F00),
+              height: 1.5,
+            ),
+            textAlign: TextAlign.center,
+          ),
+          const SizedBox(height: 40),
+
+          // Upgrade button
+          CustomButton(
+            ontap: () {},
+            borderRadius: BorderRadius.circular(15),
+            text: 'Upgrade to premium',
+            bgColor: const Color(0xFFFDB750),
+            textColor: Colors.white,
+            isLoading: false.obs,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                FaIcon(FontAwesomeIcons.crown, size: 20, color: Colors.white),
+                const SizedBox(width: 12),
+                const Text(
+                  'Upgrade to premium',
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
     );
   }
 
