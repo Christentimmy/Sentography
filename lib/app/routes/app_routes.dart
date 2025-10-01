@@ -16,4 +16,5 @@ class AppRoutes {
   static const String profile = '/profile';
   static const String bottomNavigation = '/bottomNavigation';
   static const String viewCardDetails = '/viewCardDetails';
+  static const String editPreference = '/editPreference';
 }

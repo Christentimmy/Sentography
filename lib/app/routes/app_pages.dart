@@ -8,6 +8,7 @@ import 'package:sentography/app/modules/favourite/views/matches_screen.dart';
 import 'package:sentography/app/modules/home/views/home_screen.dart';
 import 'package:sentography/app/modules/home/views/view_card_details_screen.dart';
 import 'package:sentography/app/modules/profile/views/bio_screen.dart';
+import 'package:sentography/app/modules/profile/views/edit_preference_screen.dart';
 import 'package:sentography/app/modules/profile/views/hobby_screen.dart';
 import 'package:sentography/app/modules/profile/views/preference_screen.dart';
 import 'package:sentography/app/modules/profile/views/profile_screen.dart';
@@ -35,5 +36,6 @@ class AppPages {
     GetPage(name: AppRoutes.profile, page: () => ProfileScreen()),
     GetPage(name: AppRoutes.bottomNavigation, page: () => BottomNavigationWidget()),
     GetPage(name: AppRoutes.viewCardDetails, page: () => ViewCardDetailsScreen()),
+    GetPage(name: AppRoutes.editPreference, page: () => EditPreferenceScreen()),
   ];
 }

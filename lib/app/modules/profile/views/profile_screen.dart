@@ -267,7 +267,8 @@ class _ProfileScreenState extends State<ProfileScreen>
                               ),
                               SizedBox(height: 15),
                               CustomButton(
-                                ontap: () {},
+                                ontap: () =>
+                                    Get.toNamed(AppRoutes.editPreference),
                                 isLoading: false.obs,
                                 bgColor: AppColors.bgColor,
                                 border: Border.all(
@@ -412,23 +413,6 @@ class _ProfileScreenState extends State<ProfileScreen>
                                     ),
                                   );
                                 }),
-                              ),
-                              SizedBox(height: 15),
-                              CustomButton(
-                                ontap: () {},
-                                isLoading: false.obs,
-                                bgColor: AppColors.bgColor,
-                                border: Border.all(
-                                  color: AppColors.primaryColor,
-                                ),
-                                child: Text(
-                                  "Edit Preferences",
-                                  style: GoogleFonts.inter(
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.bold,
-                                    color: AppColors.primaryColor,
-                                  ),
-                                ),
                               ),
                             ],
                           ),
