@@ -15,4 +15,5 @@ class AppRoutes {
   static const String message = '/message';
   static const String profile = '/profile';
   static const String bottomNavigation = '/bottomNavigation';
+  static const String viewCardDetails = '/viewCardDetails';
 }

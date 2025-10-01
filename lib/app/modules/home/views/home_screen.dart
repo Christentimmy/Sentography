@@ -4,6 +4,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:sentography/app/resources/colors.dart';
+import 'package:sentography/app/routes/app_routes.dart';
 
 class HomeScreen extends StatelessWidget {
   HomeScreen({super.key});
@@ -55,7 +56,12 @@ class HomeScreen extends StatelessWidget {
                       loop: true,
                       cardBuilder: (context, index) {
                         final image = images[index];
-                        return buildCard(image: image);
+                        return InkWell(
+                          onTap: () {
+                            Get.toNamed(AppRoutes.viewCardDetails);
+                          },
+                          child: buildCard(image: image),
+                        );
                       },
                     ),
                     Positioned(bottom: -35, child: buildActionButtons()),
